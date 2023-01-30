@@ -10,6 +10,10 @@ app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set('port', process.env.PORT || 3000);
 
+// routes
+app.use('/', require('./routes/index'));
+require('./routes/index');
+
 // starting the server
 app.listen(app.get('port'), () => {
     console.log('Server on Port', app.get('port'));
