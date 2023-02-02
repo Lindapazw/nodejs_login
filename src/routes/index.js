@@ -10,7 +10,8 @@ router.get('/signup', (req, res, next) => {
 });
 
 router.post('/signup', (req, res, next) => {
-
+    console.log(req.body);
+    res.send('recivido');
 });
 
 router.get('/signin', (req, res, next) => {
