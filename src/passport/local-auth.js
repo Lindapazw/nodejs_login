@@ -9,4 +9,9 @@ passport.use('local-signup', new LocalStrategy({
     passReqToCallback: true
 }, (req, email, password, done) => {
     const user = new User(); // usuario objeto en blanco
+    user.email = email;
+    user.password = password;
+    user.save(function () { // se guarda en la base de datos
+
+    }); 
 }));
