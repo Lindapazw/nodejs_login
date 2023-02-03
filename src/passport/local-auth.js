@@ -3,15 +3,19 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const User = require('../models/user')
 
+passport.serializeUser((user,done) => {
+    done(null, user.id);
+});
+
+
 passport.use('local-signup', new LocalStrategy({
     usernameField: 'email',
     passwordField:'password',
     passReqToCallback: true
-}, (req, email, password, done) => {
+}, async(req, email, password, done) => {
     const user = new User(); // usuario objeto en blanco
     user.email = email;
     user.password = password;
-    user.save(function () { // se guarda en la base de datos
-
-    }); 
+    await user.save();
+    done(null, user);
 }));
