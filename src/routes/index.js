@@ -11,10 +11,11 @@ router.get('/signup', (req, res, next) => {
     res.render('signup')
 });
 
-router.post('/signup', (req, res, next) => {
-    console.log(req.body);
-    res.send('recivido');
-});
+router.post('/signup', passport.authenticate('local-signup', {
+    successRedirect:'/',
+    failureRedirect: '/signup',
+    passReqToCallback: true
+}));
 
 router.get('/signin', (req, res, next) => {
 
