@@ -7,6 +7,10 @@ passport.serializeUser((user,done) => {
     done(null, user.id);
 });
 
+passport.deserializeUser(async (user,done) => {
+    const user = await User.findById(id);
+    done(null, user);
+});
 
 passport.use('local-signup', new LocalStrategy({
     usernameField: 'email',
