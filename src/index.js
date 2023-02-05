@@ -29,6 +29,10 @@ app.use(flash());
 app.use(passport.initialize()); // iniciamos passport
 app.use(passport.session()); // iniciamos sesion
 
+app.use((req, res, next) => {
+    app.locals.signupMessage = req.flash('signupMessage'); // toma los mensajes si existen y los guarda en la variable 
+});
+
 // routes
 app.use('/', require('./routes/index')); // express utiliza esta ruta cada vez que el usuario inicialize la app
 
