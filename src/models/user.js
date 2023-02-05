@@ -3,7 +3,7 @@ const mongoose = require('mongoose'); // exportamos mongoose
 const {Schema} = mongoose;
 
 
-const userSchema = new Schema({
+const userSchema = new Schema({ // nuevo esquema
     email: String,
     password: String
 });
@@ -16,4 +16,4 @@ userSchema.methods.comparePassword = function (password) { // compara un passwor
     return bcrypt.compareSync(password, this.password);
 };
 
-module.exports = mongoose.model('users', userSchema);
+module.exports = mongoose.model('users', userSchema); // cuando los datos son guardados en la bd, se guardan en la coleccion con el nombre user

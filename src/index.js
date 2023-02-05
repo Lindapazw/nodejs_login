@@ -4,6 +4,7 @@ const path = require('path'); // exporto path
 const morgan = require('morgan'); // exporto morgan
 const passport = require('passport'); // exporto passport
 const session = require('express-session'); // exporto express-session
+const flash = require('connect-flash'); // exporto connect-flash
 
 // Initializations
 const app = express(); // denomino a express como app 
