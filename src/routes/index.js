@@ -1,6 +1,5 @@
 const express = require('express'); // require express
 const router = express.Router(); // passport devuelve el objeto router
-
 const passport = require('passport'); // require passport
 
 router.get('/', (req, res, next) => { // ventana de inicio
@@ -25,7 +24,7 @@ router.post('/signin', (req, res, next) => {
 
 });
 
-router.get('/profile', (req, res, next) => {
+router.get('/profile', (req, res, next) => { // solo se accede si el usuario esta autenticado 
     res.render('profile');
 });
 

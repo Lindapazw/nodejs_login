@@ -2,8 +2,8 @@ const express = require('express'); // exporto express
 const engine = require('ejs-mate'); // exporto ejs
 const path = require('path'); // exporto path
 const morgan = require('morgan'); // exporto morgan
-const passport = require('passport');
-const session = require('express-session');
+const passport = require('passport'); // exporto passport
+const session = require('express-session'); // exporto express-session
 
 // Initializations
 const app = express(); // denomino a express como app 
@@ -23,9 +23,9 @@ app.use(session ({
     secret: 'myscretsession',
     resave: false,
     saveUninitialized: false
-})); // add sesion 
+})); // añadimos sesion 
 app.use(passport.initialize()); // iniciamos passport
-app.use(passport.session());
+app.use(passport.session()); // iniciamos sesion
 
 // routes
 app.use('/', require('./routes/index')); // express utiliza esta ruta cada vez que el usuario inicialize la app

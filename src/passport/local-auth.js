@@ -1,25 +1,24 @@
 const passport = require('passport'); // exporto passport
 const LocalStrategy = require('passport-local').Strategy; // exporto passport strategy
+const User = require('../models/user') // requiero el modelo de user y lo guardo en User 
 
-const User = require('../models/user')
-
-passport.serializeUser((user,done) => {
+passport.serializeUser((user,done) => { // serializar
     done(null, user.id);
 });
 
-passport.deserializeUser(async (user,done) => {
-    const User = await User.findById(id);
+passport.deserializeUser(async (id, done) => { // deserializar
+    const user = await User.findById(id); // buscamos el id en la base de datos
     done(null, user);
 });
 
 passport.use('local-signup', new LocalStrategy({
-    usernameField: 'email',
-    passwordField:'password',
-    passReqToCallback: true
+    usernameField: 'email', // toma el email
+    passwordField:'password', // toma la contraseña
+    passReqToCallback: true 
 }, async(req, email, password, done) => {
-    const newUser = new User(); // usuario objeto en blanco
-    newUser.email = email;
-    newUser.password = newUser.encryptPassword(password);
-    await newUser.save();
-    done(null, newUser);
+    const user = new User(); // usuario objeto en blanco
+    user.email = email; // toma el email
+    user.password = user.encryptPassword(password); // toma la contraseña
+    await user.save(); // guardo el nuevo usuario 
+    done(null, user);
 }));
