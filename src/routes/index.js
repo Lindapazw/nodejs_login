@@ -8,7 +8,7 @@ router.get('/', (req, res, next) => { // ventana de inicio
 });
 
 router.get('/signup', (req, res, next) => { // ventana registrarse
-    res.render('signup')
+    res.render('signup'); // cuano el usuario entre al signup, se le muestra la ventana signup.ejs 
 });
 
 router.post('/signup', passport.authenticate('local-signup', { // una ves el usuario se registra, entra el post a esta ventana

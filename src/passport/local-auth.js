@@ -1,5 +1,5 @@
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+const passport = require('passport'); // exporto passport
+const LocalStrategy = require('passport-local').Strategy; // exporto passport strategy
 
 const User = require('../models/user')
 

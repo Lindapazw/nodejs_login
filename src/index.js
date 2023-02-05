@@ -7,8 +7,8 @@ const session = require('express-session');
 
 // Initializations
 const app = express(); // denomino a express como app 
-require('./database');
-require('./passport/local-auth');
+require('./database'); // requiero base de datos 
+require('./passport/local-auth'); // requiero local autenticacion
 
 // settings
 app.set('views', path.join(__dirname, 'views')); // la carpeta de vista esta dentro de src 
@@ -17,8 +17,8 @@ app.set('view engine', 'ejs'); // establece el motor de plantillas
 app.set('port', process.env.PORT || 3000); // utiliza el puerto del sistema operativo o puerto 3000 
 
 // middlewares
-app.use(morgan('dev')); // utiliza morgan y da informacion en la terminal (por ejemplo refrescar pag)
-app.use(express.urlencoded({ extended:false}));
+app.use(morgan('dev')); // utiliza morgan y da informacion en la terminal (por ejemplo refrescar pag). Se registra el usuario
+app.use(express.urlencoded({ extended:false})); // urlencoded, sirve para recibir los datos desde el cliente
 app.use(session ({ 
     secret: 'myscretsession',
     resave: false,
