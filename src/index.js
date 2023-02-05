@@ -31,6 +31,7 @@ app.use(passport.session()); // iniciamos sesion
 
 app.use((req, res, next) => {
     app.locals.signupMessage = req.flash('signupMessage'); // toma los mensajes si existen y los guarda en la variable 
+    next();
 });
 
 // routes
