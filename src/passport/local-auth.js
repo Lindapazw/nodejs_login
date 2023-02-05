@@ -19,12 +19,12 @@ passport.use('local-signup', new LocalStrategy({
 
     const user = User.findOne({emai: email }) // busca un mail en la base de datos con el que estoy ingresando
     if(user) {
-        return done(null,false, ) // requerimos conect-flast
+        return done(null,false, req.flash('signupMessage', 'The email is alredy taken.')); // requerimos conect-flast
+    } else {
+        const newUser = new User(); // usuario objeto en blanco 
+        newUser.email = email; // toma el email
+        newUser.password = newUser.encryptPassword(password); // toma la contraseña, la cifra y espues la retorna
+        await newUser.save(); // guardo el nuevo usuario 
+        done(null, newUser);
     }
-
-    const newUser = new User(); // usuario objeto en blanco 
-    newUser.email = email; // toma el email
-    newUser.password = newUser.encryptPassword(password); // toma la contraseña, la cifra y espues la retorna
-    await newUser.save(); // guardo el nuevo usuario 
-    done(null, newUser);
 }));
