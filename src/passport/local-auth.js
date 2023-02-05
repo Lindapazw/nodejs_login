@@ -28,3 +28,19 @@ passport.use('local-signup', new LocalStrategy({
         done(null, newUser);
     }
 }));
+
+passport.use('local-signin', new LocalStrategy({
+    usernameField: 'email', // toma el email
+    passwordField:'password', // toma la contraseña
+    passReqToCallback: true 
+}, async (req, email, password,done) => {
+
+    const user = await User.findOne({email: email});
+    if(!user) { // si el usuario NO existe
+        return done(null, false, req.flash('signinMessage', 'No user found.'));
+    }
+
+    if(!user.comparePassword(password)) { // si NO coinciden las contraseñas
+        return done(null, false, req.flash('signinMessage', 'Incorrect password'));
+    }
+}));
